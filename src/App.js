@@ -1,6 +1,6 @@
 import './App.css';
-import Knight from "./components/Knight"
-import Square from "./components/Square"
+import Board from "./components/Board"
+
 
 function App() {
   return (
@@ -9,9 +9,7 @@ function App() {
         The Knight
       </div>
       <div>
-        <Square black>
-          <Knight />
-        </Square>
+        <Board knightPosition={[0, 0]} />
       </div></>
   );
 }
