@@ -2,6 +2,7 @@ import React from 'react'
 import Square from '../square/Square'
 import Knight from '../knight/Knight'
 
+
 function renderSquare(i, [knightX, knightY]) {
     const x = i % 8
     const y = Math.floor(i / 8)
