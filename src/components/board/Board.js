@@ -1,4 +1,6 @@
 import React from 'react'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import Square from '../square/Square'
 import Knight from '../knight/Knight'
 import { moveKnight, canMoveKnight } from '../game/Observer'
@@ -29,18 +31,20 @@ export default function Board({ knightPosition }) {
     }
 
     return (
-        <div
-            style={{
-                margin: "0 auto",
-                width: "100vmin",
-                height: "100vmin",
-                display: "flex",
-                flexWrap: "wrap",
-                fontSize: "10vmin",
-                border: "1px solid black",
-            }}
-        >
-            {squares}
-        </div>
+        <DndProvider backend={HTML5Backend}>
+            <div
+                style={{
+                    margin: "0 auto",
+                    width: "100vmin",
+                    height: "100vmin",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    fontSize: "10vmin",
+                    border: "1px solid black",
+                }}
+            >
+                {squares}
+            </div>
+        </DndProvider>
     )
 }
