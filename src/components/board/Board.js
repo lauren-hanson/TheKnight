@@ -1,7 +1,7 @@
 import React from 'react'
 import Square from '../square/Square'
 import Knight from '../knight/Knight'
-import { moveKnight } from '../game/Observer'
+import { moveKnight, canMoveKnight } from '../game/Observer'
 
 function renderSquare(i, [knightX, knightY]) {
     const x = i % 8
@@ -18,9 +18,10 @@ function renderSquare(i, [knightX, knightY]) {
 }
 
 function handleSquareClick(toX, toY) {
-    moveKnight(toX, toY)
+    if (canMoveKnight(toX, toY)) {
+        moveKnight(toX, toY)
+    }
 }
-
 export default function Board({ knightPosition }) {
     const squares = []
     for (let i = 0; i < 64; i++) {
