@@ -5,14 +5,20 @@ import { ItemTypes } from '../constants/Constants'
 import { useDrop } from 'react-dnd'
 
 function BoardSquare({ x, y, children }) {
+    
     const black = (x + y) % 2 === 1
-    const [{ isOver }, drop] = useDrop(() => ({
-        accept: ItemTypes.KNIGHT,
-        drop: () => moveKnight(x, y),
-        collect: monitor => ({
-            isOver: !!monitor.isOver(),
+    const [{ isOver, canDrop }, drop] = useDrop(
+        () => ({
+            accept: ItemTypes.KNIGHT,
+            drop: () => moveKnight(x, y),
+            canDrop: () => canMoveKnight(x, y),
+            collect: (monitor) => ({
+                isOver: !!monitor.isOver(),
+                canDrop: !!monitor.canDrop()
+            })
         }),
-    }), [x, y])
+        [x, y]
+    )
 
     return (
         <div
@@ -39,7 +45,7 @@ function BoardSquare({ x, y, children }) {
                 />
             )}
         </div>
-  )
+    )
 }
 
 export default BoardSquare
